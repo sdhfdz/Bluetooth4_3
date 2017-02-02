@@ -1,4 +1,7 @@
-#Wed Jan 25 19:25:41 CST 2017
-base.0=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
-renamed.0=classes.dex
-file.0=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
+#Thu Feb 02 16:05:27 CST 2017
+base.0=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_9397d4278ee6bf49e627e9cb3fa6bb814adb3561
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_58b34c6f64ac1b8f721294d150e0499fe07b23c5\\classes.dex
+base.1=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_58b34c6f64ac1b8f721294d150e0499fe07b23c5
+file.0=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_9397d4278ee6bf49e627e9cb3fa6bb814adb3561\\classes.dex

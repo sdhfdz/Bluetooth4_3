@@ -17,6 +17,8 @@
 package com.example.bluetooth.le;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -36,17 +38,18 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static java.util.concurrent.Executors.newSingleThreadScheduledExecutor;
 
 /**
  * Service for managing connection and data communication with a GATT server hosted on a
@@ -63,6 +66,8 @@ public class BluetoothLeService extends Service {
     private String mBluetoothDeviceAddress;
     private BluetoothGatt mBluetoothGatt;
     private int mConnectionState = STATE_DISCONNECTED;
+    private int count=0;
+    private int[] rssis=new int[10];
 
     private static final int STATE_DISCONNECTED = 0;
     private static final int STATE_CONNECTING = 1;
@@ -88,11 +93,20 @@ public class BluetoothLeService extends Service {
             super.onReadRemoteRssi(gatt, rssi, status);
 //            broadcastUpdate(ACTION_RSSI_READ,rssi);
             System.out.println("queshizhixinle"+rssi);
-            Message msg=new Message();
 
-            msg.what=0;
-            msg.arg1=rssi;
-            mHandler.sendMessage(msg);
+            count=count%10;
+            rssis[count]=rssi;
+            count++;
+            if (count==9){
+                Arrays.sort(rssis);
+                Message msg=new Message();
+
+                msg.what=0;
+                msg.arg1=rssis[5];
+                mHandler.sendMessage(msg);
+            }
+
+
 
         }
 
@@ -129,6 +143,13 @@ public class BluetoothLeService extends Service {
                 mConnectionState = STATE_DISCONNECTED;
                 Log.i(TAG, "Disconnected from GATT server.");
                 startAlarm();
+
+                //发送通知，处理notification的展示
+                Message msg=new Message();
+                msg.what=1;
+                mHandler.sendMessage(msg);
+                /////////////////////////////////////
+//                showNotification();
                 broadcastUpdate(intentAction);
                 if (gatt!=null)
                     gatt.close();
@@ -168,16 +189,20 @@ public class BluetoothLeService extends Service {
     private void startAlarm() {
 
 //        String song = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "test.mp3";
-        try {
+        if (!mp.isPlaying()){
+            try {
 
 //            mp.prepare();
-            mp.seekTo(0);
-            mp.start();
-            System.out.println("播放开始！");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage()+">>>>>>>>>>>>>><"+e.getCause());
+                mp.seekTo(0);
+                mp.start();
+                System.out.println("播放开始！");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println(e.getMessage()+">>>>>>>>>>>>>><"+e.getCause());
+            }
+
         }
+
     }
 
     private void broadcastUpdate(final String action) {
@@ -420,11 +445,26 @@ public class BluetoothLeService extends Service {
         mHandler=new Handler(Looper.getMainLooper()){
             @Override
             public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-//                Toast.makeText(getApplicationContext(),"RSSI值是："+msg.arg1,Toast.LENGTH_SHORT).show();
+//                super.handleMessage(msg);
+                switch (msg.what){
+                    case 0:
+                        Toast.makeText(getApplicationContext(),"RSSI值是："+msg.arg1+"距离是"+getDistance(msg.arg1),Toast.LENGTH_SHORT).show();
+                        if (getDistance(msg.arg1)>=8){
+                            Toast.makeText(getApplicationContext(),"RSSI值是："+msg.arg1+"距离超过8m",Toast.LENGTH_SHORT).show();
+                            startAlarm();
+//                            showNotification();
+                        }
+                        break;
+                    case 1:
+//                        showNotification();
+                        break;
+                }
+
             }
         };
     }
+
+
 
 
 //    public void mReadCharacter(){
@@ -441,5 +481,32 @@ public class BluetoothLeService extends Service {
         }
 
         super.onDestroy();
+    }
+
+    private int getDistance(int rssi){
+        //相距一米的时候的RSSI的值大概为-71
+        int iRssi = Math.abs(rssi);
+        double power = (iRssi-71)/(10*2.5);
+        return (int)(Math.pow(10, power));
+    }
+
+    private void showNotification() {
+
+        System.out.println("PPPPPPPPPPPPPPPLLLLLLLLLLLLL");
+        //获取NotificationManager实例
+        NotificationManager notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        //实例化NotificationCompat.Builde并设置相关属性
+        Notification.Builder builder=new Notification.Builder(getApplicationContext())
+                //设置小图标
+                .setSmallIcon(R.drawable.ic_launcher)
+                //设置通知标题
+                .setContentTitle("防丢失")
+                //设置通知内容
+                .setContentText("点击一下关闭报警");
+
+        //设置通知时间，默认为系统发出通知的时间，通常不用设置
+        //.setWhen(System.currentTimeMillis());
+        //通过builder.build()方法生成Notification对象,并发送通知,id=1
+        notifyManager.notify(1, builder.build());
     }
 }

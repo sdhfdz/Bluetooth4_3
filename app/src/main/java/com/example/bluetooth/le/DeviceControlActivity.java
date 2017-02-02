@@ -17,6 +17,8 @@
 package com.example.bluetooth.le;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.content.BroadcastReceiver;
@@ -314,6 +316,8 @@ public class DeviceControlActivity extends Activity {
         intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
     }
+
+
 
 //    public void readCharacter(View view){
 //        mBluetoothLeService.mReadCharacter();
