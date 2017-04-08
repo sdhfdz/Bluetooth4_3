@@ -2,7 +2,7 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <string name="app_name">BLE Sample</string>
+    <string name="app_name">BLE(大人)</string>
     <string name="ble_not_supported">BLE is not supported</string>
     <string name="connected">Connected</string>
     <string name="disconnected">Disconnected</string>

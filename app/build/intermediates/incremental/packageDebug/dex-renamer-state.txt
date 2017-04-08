@@ -1,4 +1,4 @@
-#Thu Feb 02 16:05:27 CST 2017
+#Sat Apr 08 16:54:06 CST 2017
 base.0=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_9397d4278ee6bf49e627e9cb3fa6bb814adb3561
 renamed.1=classes.dex
 renamed.0=classes2.dex

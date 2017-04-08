@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Feb 02 16:05:15 CST 2017
+#Sat Apr 08 16:53:48 CST 2017
 2.base=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_
 5.file=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\actionbar_indeterminate_progress.xml
 5.set=ANDROID_RESOURCE
@@ -12,12 +12,12 @@
 count=10
 0.file=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\gatt_services.xml
 5.base=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_
-8.file=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\ic_launcher.png
+8.file=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\listitem_device.xml
 4.set=ANDROID_RESOURCE
 6.base=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_
 1.file=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\activity_main.xml
 9.set=ANDROID_RESOURCE
-9.file=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\listitem_device.xml
+9.file=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xhdpi-v4\\ic_launcher.png
 1.set=ANDROID_RESOURCE
 7.base=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_
 2.file=C\:\\Users\\sdh\\Desktop\\Bishe\\Bluetooth4_3\\app\\build\\intermediates\\res\\resources-debug.ap_\\AndroidManifest.xml
