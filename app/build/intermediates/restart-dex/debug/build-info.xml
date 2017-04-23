@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="armeabi-v7a,armeabi"
-    api-level="21"
-    density="xhdpi"
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="23"
+    density="xxhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="1393962291185771"
+    timestamp="135393870636604"
     token="4611345912167863620"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="384" />
+        duration="317" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="244" />
+        duration="187" />
     <task
         name="verifier"
-        duration="67" />
+        duration="56" />
 
     <artifact
         location="C:\Users\sdh\Desktop\Bishe\Bluetooth4_3\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="1393962291185771"
+        timestamp="135393870636604"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\sdh\Desktop\Bishe\Bluetooth4_3\app\build\outputs\apk\app-debug.apk"

@@ -69,9 +69,9 @@ public class BluetoothLeService extends Service {
     private int count=0;
     private int[] rssis=new int[5];
 
-    private static final int STATE_DISCONNECTED = 0;
-    private static final int STATE_CONNECTING = 1;
-    private static final int STATE_CONNECTED = 2;
+    private static final int STATE_DISCONNECTED = BluetoothProfile.STATE_DISCONNECTED;
+    private static final int STATE_CONNECTING = BluetoothProfile.STATE_CONNECTING;
+    private static final int STATE_CONNECTED = BluetoothProfile.STATE_CONNECTED;
 
     public final static String ACTION_GATT_CONNECTED           = "com.example.bluetooth.le.ACTION_GATT_CONNECTED";
     public final static String ACTION_GATT_DISCONNECTED        = "com.example.bluetooth.le.ACTION_GATT_DISCONNECTED";
@@ -138,7 +138,7 @@ public class BluetoothLeService extends Service {
                 }
 
 
-            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+            } else if (newState == BluetoothProfile.STATE_DISCONNECTED ) {
                 scheduledExecutorService.shutdown();
                 intentAction = ACTION_GATT_DISCONNECTED;
                 mConnectionState = STATE_DISCONNECTED;
@@ -519,6 +519,10 @@ public class BluetoothLeService extends Service {
         //.setWhen(System.currentTimeMillis());
         //通过builder.build()方法生成Notification对象,并发送通知,id=1
         notifyManager.notify(1, builder.build());
+    }
+
+    public int getConnectionState(){
+        return mConnectionState;
     }
 
 }

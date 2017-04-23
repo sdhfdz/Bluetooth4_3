@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="2af2f783a36b852a4b9e9806837889e6722b4458">
+        sha1="3968cb3ece70f5ce0d62a41229a23716d2735385">
         <dex dex="C:\Users\sdh\Desktop\Bishe\Bluetooth4_3\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_58b34c6f64ac1b8f721294d150e0499fe07b23c5\classes.dex" />
     </item>
     <item
@@ -34,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="15ef66bb4daeb636dab1cd34cd7147617ea21273">
+        sha1="283c56597dfd6ffee30cc236e55b3add6ce6334f">
         <dex dex="C:\Users\sdh\Desktop\Bishe\Bluetooth4_3\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_9397d4278ee6bf49e627e9cb3fa6bb814adb3561\classes.dex" />
     </item>
     <item
