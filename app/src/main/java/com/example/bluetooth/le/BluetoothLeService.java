@@ -67,7 +67,7 @@ public class BluetoothLeService extends Service {
     private BluetoothGatt mBluetoothGatt;
     private int mConnectionState = STATE_DISCONNECTED;
     private int count=0;
-    private int[] rssis=new int[10];
+    private int[] rssis=new int[5];
 
     private static final int STATE_DISCONNECTED = 0;
     private static final int STATE_CONNECTING = 1;
@@ -94,15 +94,16 @@ public class BluetoothLeService extends Service {
 //            broadcastUpdate(ACTION_RSSI_READ,rssi);
             System.out.println("queshizhixinle"+rssi);
 
-            count=count%10;
+            count=count%5;
             rssis[count]=rssi;
             count++;
-            if (count==9){
+            if (count==5){
                 Arrays.sort(rssis);
                 Message msg=new Message();
 
                 msg.what=0;
-                msg.arg1=rssis[5];
+               // msg.arg1=rssis[5];
+                msg.arg1=getAvgRssi(rssis);
                 mHandler.sendMessage(msg);
             }
 
@@ -129,7 +130,7 @@ public class BluetoothLeService extends Service {
                     public void run() {
                         gatt.readRemoteRssi();
                     }
-                }, 3000, 300, TimeUnit.MILLISECONDS);
+                }, 3000, 500, TimeUnit.MILLISECONDS);
                 if (mp!=null && mp.isPlaying())
                 {
                     mp.pause();
@@ -448,9 +449,9 @@ public class BluetoothLeService extends Service {
 //                super.handleMessage(msg);
                 switch (msg.what){
                     case 0:
-                        Toast.makeText(getApplicationContext(),"RSSI值是："+msg.arg1+"距离是"+getDistance(msg.arg1),Toast.LENGTH_SHORT).show();
-                        if (getDistance(msg.arg1)>=8){
-                            Toast.makeText(getApplicationContext(),"RSSI值是："+msg.arg1+"距离超过8m",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"："+msg.arg1+"："+getDistance(msg.arg1),Toast.LENGTH_SHORT).show();
+                        if (getDistance(msg.arg1)>=8.0){
+                            Toast.makeText(getApplicationContext(),"："+msg.arg1+">8m",Toast.LENGTH_SHORT).show();
                             startAlarm();
 //                            showNotification();
                         }
@@ -483,11 +484,21 @@ public class BluetoothLeService extends Service {
         super.onDestroy();
     }
 
-    private int getDistance(int rssi){
+    private double getDistance(int rssi){
         //相距一米的时候的RSSI的值大概为-71
         int iRssi = Math.abs(rssi);
-        double power = (iRssi-71)/(10*2.5);
-        return (int)(Math.pow(10, power));
+        double power = (iRssi-62)/(10*2.5);
+        return (Math.pow(10, power));
+    }
+    private int getAvgRssi(int[] tmp){
+
+        //System.out.println(tmp.length+"length<><><><><><><><>");
+        int sum=0;
+        for (int i=0;i<tmp.length;i++){
+            sum+=tmp[i];
+        }
+        System.out.println(tmp.length+"length"+sum+"sum<><><><><><><><>");
+        return sum/tmp.length;
     }
 
     private void showNotification() {
@@ -509,4 +520,5 @@ public class BluetoothLeService extends Service {
         //通过builder.build()方法生成Notification对象,并发送通知,id=1
         notifyManager.notify(1, builder.build());
     }
+
 }
